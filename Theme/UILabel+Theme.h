@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KSSkinModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (Theme)
 
-- (void)bl_setThemeTextColor;
+- (void)hy_setTextColorThemeKey:(KSSkinKey)key;
+
+- (void)hy_setBackgroudColorThemeKey:(KSSkinKey)key;
 
 @end
 

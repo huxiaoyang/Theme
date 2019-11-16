@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KSSkinModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (Theme)
 
-- (void)bt_setThemeTextColor;
+- (void)hy_setBackgroudColorThemeKey:(KSSkinKey)key;
+
+- (void)hy_setTitleColorThemeKey:(KSSkinKey)key forState:(UIControlState)state;
 
 @end
 

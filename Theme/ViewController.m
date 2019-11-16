@@ -25,26 +25,30 @@
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 60, SCREEN_WIDTH-40, 40)];
     label.text = @"Label1";
-    [label bl_setThemeTextColor];
+    [label hy_setBackgroudColorThemeKey:skin_label_backgroud_color];
+    [label hy_setTextColorThemeKey:skin_label_text_color];
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
     
     UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(20, 120, SCREEN_WIDTH-40, 40)];
     label2.text = @"Label2";
-    [label2 bl_setThemeTextColor];
+    [label2 hy_setBackgroudColorThemeKey:skin_label_backgroud_color];
+    [label2 hy_setTextColorThemeKey:skin_label_text_color];
     label2.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label2];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(20, 180, SCREEN_WIDTH-40, 40);
     [button setTitle:@"Button1" forState:UIControlStateNormal];
-    [button bt_setThemeTextColor];
+    [button hy_setBackgroudColorThemeKey:skin_button_backgroud_color];
+    [button hy_setTitleColorThemeKey:skin_button_title_color forState:UIControlStateNormal];
     [self.view addSubview:button];
     
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeCustom];
     button2.frame = CGRectMake(20, 240, SCREEN_WIDTH-40, 40);
     [button2 setTitle:@"Button2" forState:UIControlStateNormal];
-    [button2 bt_setThemeTextColor];
+    [button2 hy_setBackgroudColorThemeKey:skin_button_backgroud_color];
+    [button2 hy_setTitleColorThemeKey:skin_button_title_color forState:UIControlStateNormal];
     [self.view addSubview:button2];
     
     
@@ -53,7 +57,7 @@
     button3.tag = 101;
     [button3 setTitle:@"主题1" forState:UIControlStateNormal];
     [button3 addTarget:self action:@selector(themeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [button3 bt_setThemeTextColor];
+    [button3 setBackgroundColor:[UIColor brownColor]];
     [self.view addSubview:button3];
     
     UIButton *button4 = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -61,7 +65,7 @@
     button4.tag = 102;
     [button4 setTitle:@"主题2" forState:UIControlStateNormal];
     [button4 addTarget:self action:@selector(themeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [button4 bt_setThemeTextColor];
+    [button4 setBackgroundColor:[UIColor brownColor]];
     [self.view addSubview:button4];
 }
 

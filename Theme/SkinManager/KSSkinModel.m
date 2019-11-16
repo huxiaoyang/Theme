@@ -8,43 +8,9 @@
 
 #import "KSSkinModel.h"
 #import "UIColor+Theme.h"
-
+#import "KSSkinManager.h"
 
 @implementation KSSkinModel
-
-+ (instancetype)defaultSkinModel {
-    return [[KSSkinModel alloc] initWithThemeSkin:NO];
-}
-
-+ (instancetype)theme1SkinModel {
-    return [[KSSkinModel alloc] initWithThemeSkin:YES];
-}
-
-- (instancetype)initWithThemeSkin:(BOOL)useSkin {
-    self = [super init];
-    if (self) {
-        if (useSkin) {
-            [self theme1SkinConfig];
-        } else {
-            [self defaultSkinConfig];
-        }
-    }
-    return self;
-}
-
-- (void)defaultSkinConfig {
-    _labelColor = [UIColor colorWithHexString:@"#222222"];
-    _buttonColor = [UIColor colorWithHexString:@"#E0E0E0"];
-}
-
-- (void)theme1SkinConfig {
-    NSDictionary *dictionary = [self styleDictionary];
-    if (!dictionary) {
-        return;
-    }
-    _labelColor = [UIColor colorWithHexString:dictionary[@"label_color"]];
-    _buttonColor = [UIColor colorWithHexString:dictionary[@"button_color"]];
-}
 
 - (NSDictionary *)styleDictionary {
     NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"skin" withExtension:@"bundle"];
@@ -62,6 +28,29 @@
         dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
     }
     return dictionary;
+}
+
+NSString *StringWithSkinKey(KSSkinKey key) {
+    switch (key) {
+        case skin_label_text_color:
+            return @"label_text_color";
+        case skin_label_backgroud_color:
+            return @"label_backgroud_color";
+         case skin_button_backgroud_color:
+            return @"button_backgroud_color";
+        case skin_button_title_color:
+            return @"button_title_color";
+    }
+}
+
+- (UIColor *)colorWithKey:(KSSkinKey)key {
+    if (skin_style() == KSSkinStyleTheme1) {
+        NSString *colorString = [[self styleDictionary] valueForKey:StringWithSkinKey(key)];
+        return [UIColor colorWithHexString:colorString];
+    }
+    
+    /// 这里先随便一个默认值，正常需要一个默认皮肤的 json
+    return [UIColor orangeColor];
 }
 
 @end

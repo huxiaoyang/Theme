@@ -12,15 +12,23 @@
 
 @implementation UILabel (Theme)
 
-- (void)bl_setThemeTextColor{
-    
-    self.backgroundColor = skin_style_model().labelColor;
-    self.textColor = [UIColor whiteColor];
+ - (void)hy_setTextColorThemeKey:(KSSkinKey)key {
+    self.textColor = [skin_style_model() colorWithKey:key];
     
     #define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
     WS(weakSelf)
     skin_register_observer(self, _cmd, ^{
-        [weakSelf bl_setThemeTextColor];
+        [weakSelf hy_setTextColorThemeKey:key];
+    });
+}
+
+- (void)hy_setBackgroudColorThemeKey:(KSSkinKey)key {
+    self.backgroundColor = [skin_style_model() colorWithKey:key];
+    
+    #define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
+    WS(weakSelf)
+    skin_register_observer(self, _cmd, ^{
+        [weakSelf hy_setBackgroudColorThemeKey:key];
     });
 }
 

@@ -79,6 +79,7 @@ void skin_switch(KSSkinStyle style) {
     self = [super init];
     if (self) {
         _blockDictionary = [NSMutableDictionary dictionary];
+        _skinModel = [[KSSkinModel alloc] init];
         KSSkinStyle style = KSSkinStyleDefault;
         [self switchSkinStyle:style];
     }
@@ -87,11 +88,6 @@ void skin_switch(KSSkinStyle style) {
 
 - (void)switchSkinStyle:(KSSkinStyle)style {
     _skinStyle = style;
-    if (style == KSSkinStyleTheme1) {
-        _skinModel = [KSSkinModel theme1SkinModel];
-    } else {
-        _skinModel = [KSSkinModel defaultSkinModel];
-    }
 }
 
 @end

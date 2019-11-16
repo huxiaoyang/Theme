@@ -1,4 +1,6 @@
 {
-    "label_color"    : "#C42C0C",
-    "button_color"   : "#FFE0B3"
+    "label_text_color"   : "#ffcd00",
+    "label_backgroud_color"        : "#8f4db2",
+    "button_title_color" : "#FFE0B3",
+    "button_backgroud_color"       : "#C41125"
 }

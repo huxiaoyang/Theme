@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, KSSkinKey) {
+    skin_label_text_color,
+    skin_label_backgroud_color,
+    skin_button_backgroud_color,
+    skin_button_title_color,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KSSkinModel : NSObject
 
-@property (nonatomic, strong) UIColor *labelColor;
-@property (nonatomic, strong) UIColor *buttonColor;
-
-
-+ (instancetype)defaultSkinModel;
-+ (instancetype)theme1SkinModel;
+- (UIColor *)colorWithKey:(KSSkinKey)key;
 
 @end
 

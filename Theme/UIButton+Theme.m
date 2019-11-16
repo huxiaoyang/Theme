@@ -12,16 +12,24 @@
 
 @implementation UIButton (Theme)
 
-- (void)bt_setThemeTextColor{
-
-    self.backgroundColor = skin_style_model().buttonColor;
+- (void)hy_setBackgroudColorThemeKey:(KSSkinKey)key {
+    self.backgroundColor = [skin_style_model() colorWithKey:key];
     
-    __weak __typeof(&*self)weakSelf = self;
-    KSSwitchSkinBlock switchThemeBlock = ^{
-        [weakSelf bt_setThemeTextColor];
-    };
+    #define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
+    WS(weakSelf)
+    skin_register_observer(self, _cmd, ^{
+        [weakSelf hy_setBackgroudColorThemeKey:key];
+    });
+}
 
-    skin_register_observer(self, @selector(bt_setThemeTextColor), switchThemeBlock);
+- (void)hy_setTitleColorThemeKey:(KSSkinKey)key forState:(UIControlState)state {
+    [self setTitleColor:[skin_style_model() colorWithKey:key] forState:state];
+    
+    #define WS(weakSelf) __weak __typeof(&*self)weakSelf = self;
+    WS(weakSelf)
+    skin_register_observer(self, _cmd, ^{
+        [weakSelf hy_setTitleColorThemeKey:key forState:state];
+    });
 }
 
 @end
